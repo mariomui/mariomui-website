@@ -1,0 +1,19 @@
+.grid {
+  display: block;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+
+.row > div {
+  text-align: center;
+  min-width: calc(1/5*100% - (1 - 1/5)*10px);
+  min-height: calc(1/10*100%);
+  box-sizing: border-box;
+  border: 1px dashed rgb(122,122,122, .5);
+  margin-left: 5px
+}
