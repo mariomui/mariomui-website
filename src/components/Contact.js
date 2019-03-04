@@ -35,12 +35,13 @@ class Contact extends React.Component {
             number: 0,
             array: []
         }
+        let hashtwo = {};
         for (let key in this.state) {
-            this.state[key] = hash[findType(this.state[key])]
+            hashtwo[key] = hash[findType(this.state[key])]
         }
-        this.setState({
-            toggleSend: !this.state.toggleSend
-        })
+        debugger;
+        Object.assign(hashtwo, { 'toggleSend': true })
+        this.setState(hashtwo);
     }
 
     toggleSend = () => {
