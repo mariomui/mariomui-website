@@ -65,7 +65,7 @@ class Contact extends React.Component {
             <section id="contact">
                 <div className="inner">
                     <section>
-                        <form data-netlify="true" netlify-honeypot="bot-field" method="post" onSubmit={this.handleSendForm}>
+                        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" method="post" onSubmit={this.handleSendForm}>
                             <div className="field half first">
                                 <label htmlFor="name">Name</label>
                                 <input type="text" onChange={this.handleFormInput} name="name" id="name" />
@@ -78,6 +78,11 @@ class Contact extends React.Component {
                                 <label htmlFor="message">Message</label>
                                 <textarea onChange={this.handleFormInput} name="message" id="message" rows="6"></textarea>
                             </div>
+                            <div>
+
+                                <input type="hidden" name="bot-field" />
+                            </div>
+
                             <ul className="actions">
                                 <li><input type="submit" value="Send Message" className="special" /></li>
                                 <li><input type="reset" value="Clear" /></li>
