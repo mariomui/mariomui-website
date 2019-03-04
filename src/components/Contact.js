@@ -1,13 +1,16 @@
 import React from 'react'
-const { AWS_API } = require('../../config')
+const { AWS_API2, AWS_API } = require('../../config')
 const awsVerbs = require('../../controllers')
+const axios = require('axios');
+
 class Contact extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
             email: '',
-            message: ''
+            message: '',
+            toggleSend: false,
         }
     }
 
@@ -17,17 +20,47 @@ class Contact extends React.Component {
             [e.target.name]: e.target.value
         });
     }
+    clear = () => {
+        const findType = (thing) => {
+            if (Array.isArray(thing)) {
+                return 'array';
+            }
+            if (Object.is(thing)) {
+                return 'object';
+            }
+            return typeof thing
+        }
 
+        const hash = {
+            string: '',
+            number: 0,
+            array: []
+        }
+        for (let key in this.state) {
+            this.state[key] = hash[findType(this.state[key])]
+        }
+        this.setState({
+            toggleSend: !this.state.toggleSend
+        })
+    }
     handleFormSubmit = (e) => {
         e.preventDefault();
-        let formData = JSON.stringify(this.state);
-        awsVerbs.post(AWS_API, formData)
-            .then((data) => {
-                debugger
-                console.log(data)
-            }).catch((err) => {
-                console.log(err, "hey")
+        // let formData = JSON.stringify(this.state);
+        // awsVerbs.post(AWS_API2, formData, (err, data) => {
+        //     console.log(data);
+        // })
+        const { name, email, message } = this.state
+        const payload = { name, email, message }
+        awsVerbs.postData(AWS_API2, payload)
+            .then((response) => {
+                return response.json()
             })
+            .then(data => {
+                this.clear();
+                console.log(data);
+
+            })// JSON-string from `response.json()` call
+            .catch(error => console.error(error));
 
     }
 
@@ -40,15 +73,15 @@ class Contact extends React.Component {
                         <form onSubmit={this.handleFormSubmit}>
                             <div className="field half first">
                                 <label htmlFor="name">Name</label>
-                                <input type="text" onChange={this.handleFormInput} name="name" id="name" />
+                                <input type="text" onChange={this.handleFormInput} value={this.state.name} name="name" id="name" />
                             </div>
                             <div className="field half">
                                 <label htmlFor="email">Email</label>
-                                <input type="text" onChange={this.handleFormInput} name="email" id="email" />
+                                <input type="text" onChange={this.handleFormInput} value={this.state.email} name="email" id="email" />
                             </div>
                             <div className="field">
                                 <label htmlFor="message">Message</label>
-                                <textarea onChange={this.handleFormInput} name="message" id="message" rows="6"></textarea>
+                                <textarea onChange={this.handleFormInput} value={this.state.message} name="message" id="message" rows="6"></textarea>
                             </div>
 
                             <ul className="actions">

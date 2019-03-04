@@ -1,22 +1,23 @@
-const axios = require('axios');
+// const fetch = require('fetch');
 
-function post(baseUrl, data) {
-  return axios({
-    method: 'post',
-    baseUrl,
+function postData(url = ``, data = {}) {
+  // Default options are marked with *
+  //wow 8 hours to learn that axios doesnt work with service workers
+  return fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Accept': 'application/json',
-      "Access-Control-Allow-Origin": "*",
-      'Access-Control-Allow-Methods': 'OPTIONS,POST',
-      "Access-Control-Allow-Headers": "x-requested-with",
-      "Access-Control-Allow-Credentials": true,
-
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
     },
-    data
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
   })
 }
 
 module.exports = {
-  post
+  postData
 }
