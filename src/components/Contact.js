@@ -1,5 +1,6 @@
 import React from 'react'
-
+const { AWS_API } = require('../../config')
+const awsVerbs = require('../../controllers')
 class Contact extends React.Component {
     constructor(props) {
         super(props)
@@ -16,13 +17,27 @@ class Contact extends React.Component {
             [e.target.name]: e.target.value
         });
     }
+
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        let formData = JSON.stringify(this.state);
+        awsVerbs.post(AWS_API, formData)
+            .then((data) => {
+                debugger
+                console.log(data)
+            }).catch((err) => {
+                console.log(err, "hey")
+            })
+
+    }
+
     render() {
 
         return (
             <section id="contact">
                 <div className="inner">
                     <section>
-                        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" method="post">
+                        <form onSubmit={this.handleFormSubmit}>
                             <div className="field half first">
                                 <label htmlFor="name">Name</label>
                                 <input type="text" onChange={this.handleFormInput} name="name" id="name" />
@@ -34,10 +49,6 @@ class Contact extends React.Component {
                             <div className="field">
                                 <label htmlFor="message">Message</label>
                                 <textarea onChange={this.handleFormInput} name="message" id="message" rows="6"></textarea>
-                            </div>
-                            <div>
-
-                                <input type="hidden" name="bot-field" />
                             </div>
 
                             <ul className="actions">
