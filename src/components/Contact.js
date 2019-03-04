@@ -1,8 +1,5 @@
 import React from 'react'
-import AWS from 'aws-sdk'
 
-
-const SES = new AWS.SES()
 class Contact extends React.Component {
     constructor(props) {
         super(props)
@@ -13,46 +10,6 @@ class Contact extends React.Component {
         }
     }
 
-    sendData = (formData, callback) => {
-        const emailParams = {
-            Source: 'yi.kan.mui@gmail.com', // SES SENDING EMAIL
-            ReplyToAddresses: [formData.email],
-            Destination: {
-                ToAddresses: ['yi.kan.mui@gmail.com'], // SES RECEIVING EMAIL
-            },
-            Message: {
-                Body: {
-                    Text: {
-                        Charset: 'UTF-8',
-                        Data: `${formData.message}\n\nName: ${formData.name}\nEmail: ${formData.email}`,
-                    },
-                },
-                Subject: {
-                    Charset: 'UTF-8',
-                    Data: 'New message from your_site.com',
-                },
-            },
-        }
-
-        SES.sendEmail(emailParams, callback);
-    }
-
-
-
-    handleSendForm = (e) => {
-        e.preventDefault()
-        const { name, email, message } = this.state;
-        let form = {
-            name, email, message
-        }
-        this.sendData(form, (err, receipt) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(receipt)
-            }
-        })
-    }
     handleFormInput = (e) => {
         e.preventDefault();
         this.setState({
@@ -65,7 +22,7 @@ class Contact extends React.Component {
             <section id="contact">
                 <div className="inner">
                     <section>
-                        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" method="post" onSubmit={this.handleSendForm}>
+                        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" method="post">
                             <div className="field half first">
                                 <label htmlFor="name">Name</label>
                                 <input type="text" onChange={this.handleFormInput} name="name" id="name" />
