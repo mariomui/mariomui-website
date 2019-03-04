@@ -1,7 +1,6 @@
 import React from 'react'
-const { AWS_API2, AWS_API } = require('../../config')
+const { AWS_API2 } = require('../../config')
 const awsVerbs = require('../../controllers')
-const axios = require('axios');
 
 class Contact extends React.Component {
     constructor(props) {
@@ -40,6 +39,12 @@ class Contact extends React.Component {
             this.state[key] = hash[findType(this.state[key])]
         }
         this.setState({
+            toggleSend: !this.state.toggleSend
+        })
+    }
+
+    toggleSend = () => {
+        this.state({
             toggleSend: !this.state.toggleSend
         })
     }
@@ -90,6 +95,8 @@ class Contact extends React.Component {
                             </ul>
                         </form>
                     </section>
+                    {this.state.toggleSend ? <div className="content">You've sent the message!</div> : null}
+
                     <section className="split">
                         <section>
                             <div className="contact-method">

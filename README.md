@@ -11,6 +11,16 @@
 - Section Contact(optional) should literally be a email form telling the users to email you. 
 - should have a footer. Footer should contain links pertaining to you, your address(mine), email, git, linkedin, trademark, etc. You could also insert a sentence that says "code for this website <here>"
 
+# Extra features
+[x] Lambda Serverless Contact Form. No need to mailto: Just hit send and it sends an email to me. 
+* There is a config.js file that has all the lambda API points.
+* The controller has the POSTing function.
+* AFTER successful post, a message is sent back with an ID (RESTFUL)
+* User is notified of posting (RESTFUL)
+* DONT USE AXIOS. DOES NOT WORK WITH SERVICE WORKERS.
+
+[] Transitions, scale Keyframes. Make it friendly for mobile first. 
+
 
 # gatsby-starter-forty
 

@@ -11,6 +11,9 @@ import pic04 from '../assets/images/personalCasual.jpg'
 import pic05 from '../assets/images/personalCasual.jpg'
 import pic06 from '../assets/images/pic03.jpg'
 import FrontEndIconList from '../components/FrontEndIconList'
+import BackEndIconList from '../components/BackEndIconList'
+import DeployIconList from '../components/DeployIconList'
+
 let r = {
     pic01, pic02, pic03, pic04, pic05, pic06
 }
@@ -23,14 +26,6 @@ class HomeIndex extends React.Component {
 
         return (
             <Layout>
-                {/* <Helmet
-                    title="Mario Mui's Website"
-                    meta={[
-                        { name: 'description', content: 'Sample' },
-                        { name: 'keywords', content: 'sample, something' },
-                    ]}
-                >
-                </Helmet> */}
                 <Helm ></Helm>
 
                 <Banner />
@@ -42,8 +37,8 @@ class HomeIndex extends React.Component {
                             backgroundSize: 'cover'
                         }}>
                             <header className="major">
-                                <h3>Aliquam</h3>
-                                <p>Ipsum dolor sit amet</p>
+                                <h3>"Tell me why of the Day!"</h3>
+                                <p>"You can't use axios inside of Service Workers"</p>
                             </header>
                         </article>
                     </section>
@@ -58,8 +53,8 @@ class HomeIndex extends React.Component {
                                 <header className="major">
                                     <h2>About Me</h2>
                                 </header>
-                                <p>something</p>
-                                <FrontEndIconList />
+                                <div className="button next">Slide Down</div>
+                                <FrontEndIconList className="slider" /><BackEndIconList className="slider" /><DeployIconList />
                                 <ul className="actions">
                                 </ul>
                             </article>
@@ -68,9 +63,14 @@ class HomeIndex extends React.Component {
                     <section id="three">
                         <div className="inner">
                             <header className="major">
-                                <h2>Massa libero</h2>
+                                <h2>Projects</h2>
                             </header>
-                            <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
+                            {/* When i have time, a graphQL way to do blogposts woudl be nice. */}
+                            1. Reddit Webscraper
+                            2. We BNB hospitality frontend (proxing microservices)
+                            3. BNB Backend horizontally scaling using nginx.
+                            4. Clarisign App (2nd Place Overall Dev Week 2019 out 150 teams)
+                            5  LOCO (Blockchain Microlending App 2nd place 2018)
                             <ul className="actions">
                             </ul>
                         </div>

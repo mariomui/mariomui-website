@@ -26,6 +26,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "deploy:surge": "gatsby build && surge public/",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
