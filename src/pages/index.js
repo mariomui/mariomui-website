@@ -1,6 +1,7 @@
 import React from 'react'
 // import { Link } from 'gatsby'
-import Helmet from 'react-helmet'
+// import Helmet from 'react-helmet'
+import Helm from '../components/Helm'
 import Layout from '../components/layout'
 import Banner from '../components/Banner'
 import pic01 from '../assets/images/pic04.jpg'
@@ -22,14 +23,15 @@ class HomeIndex extends React.Component {
 
         return (
             <Layout>
-                <Helmet
+                {/* <Helmet
                     title="Mario Mui's Website"
                     meta={[
                         { name: 'description', content: 'Sample' },
                         { name: 'keywords', content: 'sample, something' },
                     ]}
                 >
-                </Helmet>
+                </Helmet> */}
+                <Helm ></Helm>
 
                 <Banner />
 
